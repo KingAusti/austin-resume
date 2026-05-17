@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Austin Henry — Infrastructure Engineer</title>
+  <meta name="description" content="Infrastructure Engineer specializing in Cloud, Automation, IAM & Endpoint Management. 12+ years of experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Ambient background -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-sym">&lt;</span><span class="brand-n">austin</span><span class="brand-d">.henry</span><span class="brand-sym">&nbsp;/&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#stats"      class="nav-link" data-section="stats">About</a></li>
+        <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+        <li><a href="#skills"     class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#education"  class="nav-link" data-section="education">Education</a></li>
+      </ul>
+      <a href="mailto:info@austinhenry.dev" class="nav-contact">Contact</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#stats"      class="mobile-link">About</a>
+      <a href="#experience" class="mobile-link">Experience</a>
+      <a href="#skills"     class="mobile-link">Skills</a>
+      <a href="#education"  class="mobile-link">Education</a>
+      <a href="mailto:info@austinhenry.dev" class="mobile-link mobile-cta">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ════════════════════════════ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <p class="hero-eyebrow fade-up" style="--i:0">
+          <span class="status-dot"></span>
+          Currently @ Dutch Bros Coffee &nbsp;·&nbsp; Medford–Grants Pass, OR
+        </p>
+
+        <h1 class="hero-name fade-up" style="--i:1">
+          <span class="name-line">Austin</span>
+          <span class="name-line name-grad">Henry</span>
+        </h1>
+
+        <div class="hero-type fade-up" style="--i:2">
+          <span class="type-label">I build</span>
+          <span class="type-wrap">
+            <span id="typed" class="type-word"></span><span class="type-cursor">|</span>
+          </span>
+        </div>
+
+        <p class="hero-bio fade-up" style="--i:3">
+          Infrastructure engineer with 12+ years spanning cloud engineering, automation, and enterprise IT.
+          Building Terraform-managed AWS infrastructure and iPaaS automation workflows for a nationally distributed
+          organization. Pursuing a BS in Computer Science — shipping production infrastructure along the way.
+        </p>
+
+        <div class="hero-actions fade-up" style="--i:4">
+          <a href="mailto:info@austinhenry.dev" class="btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            info@austinhenry.dev
+          </a>
+          <a href="https://linkedin.com/in/austinthehenry" target="_blank" rel="noopener" class="btn-ghost">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="tel:5414994420" class="btn-ghost">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12 19.79 19.79 0 0 1 1.6 3.38a2 2 0 0 1 2-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            541.499.4420
+          </a>
+        </div>
+
+        <div class="hero-chips fade-up" style="--i:5">
+          <span class="chip">AWS</span>
+          <span class="chip">Terraform</span>
+          <span class="chip">Python</span>
+          <span class="chip">Bash</span>
+          <span class="chip">JAMF</span>
+          <span class="chip">Workato</span>
+          <span class="chip">CI/CD</span>
+          <span class="chip">Google Workspace</span>
+        </div>
+
+      </div>
+    </div>
+
+    <a href="#stats" class="scroll-cue fade-up" style="--i:7" aria-label="Scroll down">
+      <div class="mouse"><div class="wheel"></div></div>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════ STATS ═══════════════════════════ -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat reveal">
+          <div class="stat-val"><span class="count" data-target="12">0</span><span class="stat-plus">+</span></div>
+          <div class="stat-lbl">Years of Experience</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat reveal">
+          <div class="stat-val"><span class="count" data-target="2000">0</span><span class="stat-plus">+</span></div>
+          <div class="stat-lbl">Endpoints Managed</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat reveal">
+          <div class="stat-val"><span class="count" data-target="6">0</span></div>
+          <div class="stat-lbl">Companies Served</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat reveal">
+          <div class="stat-val"><span class="count" data-target="5">0</span><span class="stat-plus">+</span></div>
+          <div class="stat-lbl">Certifications</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ EXPERIENCE ═════════════════════════ -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-kicker">// work history</span>
+        <h2>Experience</h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div>
+                <h3>Engineer II</h3>
+                <span class="tl-company">Dutch Bros Coffee</span>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">May 2023 – Present</span>
+                <span class="tl-pill">Remote</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>Design and maintain cloud infrastructure on AWS using Terraform, enabling repeatable, version-controlled provisioning across environments</li>
+              <li>Build and maintain CI/CD pipelines that streamline deployment workflows and accelerate release cycles</li>
+              <li>Develop enterprise automation workflows in Workato, automating employee onboarding/offboarding, SaaS integrations, and IT ticketing across 2,000+ person org</li>
+              <li>Administer Google Workspace for corporate identity management, user provisioning, and access policy enforcement</li>
+              <li>Manage macOS endpoint fleet via JAMF — configuration profiles, app deployment, and compliance policies</li>
+              <li>Write automation scripts in Python and Bash to support infrastructure operations and reduce manual toil</li>
+            </ul>
+            <div class="tl-tags">
+              <span>AWS</span><span>Terraform</span><span>Python</span><span>Bash</span><span>JAMF</span><span>Workato</span><span>Google Workspace</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div>
+                <h3>IT Support Analyst II</h3>
+                <span class="tl-company">Dutch Bros Coffee</span>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Jul 2021 – May 2023</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>Escalation point for complex technical issues across a rapidly scaling, multi-location retail organization</li>
+              <li>Led company-wide technology rollouts and service implementations, coordinating across IT and operations</li>
+              <li>Supported endpoint management and user provisioning as the company grew from regional to national operations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div>
+                <h3>IT Support Specialist</h3>
+                <span class="tl-company">Dutch Bros Coffee</span>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Apr 2019 – Jul 2021</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>Delivered end-user support and company-wide technical service implementations for a high-growth retail brand</li>
+              <li>Supported network infrastructure across distributed retail locations; earned Cisco Meraki ECMS 1 certification</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div>
+                <h3>IT Support Technician</h3>
+                <span class="tl-company">Lithia Motors, Inc.</span>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Sep 2016 – Apr 2019</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>Provided IT support across dealership locations for a Fortune 300 automotive retailer with multi-site endpoint management</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div>
+                <h3>Apple Support Advisor</h3>
+                <span class="tl-company">Apple</span>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Jul 2015 – Jul 2016</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>First point of contact for Apple product troubleshooting and technical support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div>
+                <h3>Consultation Agent</h3>
+                <span class="tl-company">Geek Squad</span>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Oct 2013 – Jul 2015</span>
+              </div>
+            </div>
+            <ul class="tl-list">
+              <li>Diagnosed hardware and software issues, delivered hands-on technical support and solution recommendations</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ SKILLS ═══════════════════════════ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-kicker">// tools of the trade</span>
+        <h2>Technical Skills</h2>
+      </div>
+      <div class="skills-grid">
+
+        <div class="sk-card reveal" style="--c: #5b8dee">
+          <div class="sk-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+          </div>
+          <h3>Cloud &amp; IaC</h3>
+          <div class="sk-tags"><span>AWS</span><span>Terraform</span><span>CI/CD</span><span>Cloud Infrastructure</span></div>
+        </div>
+
+        <div class="sk-card reveal" style="--c: #7dd3bb">
+          <div class="sk-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>Automation &amp; Scripting</h3>
+          <div class="sk-tags"><span>Python</span><span>Bash</span><span>Workato</span><span>Workflow Automation</span></div>
+        </div>
+
+        <div class="sk-card reveal" style="--c: #a78bfa">
+          <div class="sk-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>IAM &amp; Endpoints</h3>
+          <div class="sk-tags"><span>Google Workspace</span><span>JAMF</span><span>SSO</span><span>Access Management</span></div>
+        </div>
+
+        <div class="sk-card reveal" style="--c: #fb923c">
+          <div class="sk-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <h3>Networking</h3>
+          <div class="sk-tags"><span>Cisco Meraki</span><span>TCP/IP</span><span>Linux</span><span>DNS</span></div>
+        </div>
+
+        <div class="sk-card reveal" style="--c: #f472b6">
+          <div class="sk-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+          </div>
+          <h3>Development</h3>
+          <div class="sk-tags"><span>JavaScript</span><span>MySQL</span><span>Full Stack Web</span></div>
+        </div>
+
+        <div class="sk-card reveal" style="--c: #34d399">
+          <div class="sk-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Platforms &amp; Tools</h3>
+          <div class="sk-tags"><span>macOS</span><span>Windows</span><span>Git</span><span>Office 365</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ EDUCATION ══════════════════════════ -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-kicker">// learning &amp; credentials</span>
+        <h2>Education &amp; Certifications</h2>
+      </div>
+
+      <div class="edu-grid">
+        <div>
+          <p class="edu-col-label reveal">Degrees</p>
+
+          <div class="edu-card reveal">
+            <div class="edu-top">
+              <div>
+                <div class="edu-degree">BS, Computer Science</div>
+                <div class="edu-school">Colorado Technical University</div>
+              </div>
+              <span class="edu-year">Expected 2027</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill" style="--pct: 40%"></div></div>
+            <div class="prog-label">In Progress</div>
+          </div>
+
+          <div class="edu-card reveal">
+            <div class="edu-top">
+              <div>
+                <div class="edu-degree">Certificate, Full Stack Web Development</div>
+                <div class="edu-school">University of Oregon</div>
+              </div>
+              <span class="edu-year">2022</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill" style="--pct: 100%"></div></div>
+            <div class="prog-label">Completed</div>
+          </div>
+        </div>
+
+        <div>
+          <p class="edu-col-label reveal">Certifications</p>
+          <div class="certs">
+            <div class="cert reveal">
+              <div class="cert-mark">✦</div>
+              <div>
+                <div class="cert-name">AWS Cloud Quest: Cloud Practitioner</div>
+                <div class="cert-meta">Amazon Web Services · 2025</div>
+              </div>
+            </div>
+            <div class="cert reveal">
+              <div class="cert-mark">✦</div>
+              <div>
+                <div class="cert-name">Workato Automation Pro I, II, III</div>
+                <div class="cert-meta">Workato · 2024</div>
+              </div>
+            </div>
+            <div class="cert reveal">
+              <div class="cert-mark">✦</div>
+              <div>
+                <div class="cert-name">Fundamentals of Networking</div>
+                <div class="cert-meta">uCertify · 2024</div>
+              </div>
+            </div>
+            <div class="cert reveal">
+              <div class="cert-mark">✦</div>
+              <div>
+                <div class="cert-name">Cisco Meraki ECMS 1 &amp; 2</div>
+                <div class="cert-meta">Cisco · 2021, 2022</div>
+              </div>
+            </div>
+            <div class="cert reveal">
+              <div class="cert-mark">✦</div>
+              <div>
+                <div class="cert-name">Introduction to DevOps</div>
+                <div class="cert-meta">Codecademy · 2022</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ FOOTER ════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <span class="footer-brand">&lt;austin.henry&nbsp;/&gt;</span>
+        <div class="footer-links">
+          <a href="mailto:info@austinhenry.dev">info@austinhenry.dev</a>
+          <a href="https://linkedin.com/in/austinthehenry" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="tel:5414994420">541.499.4420</a>
+        </div>
+        <span class="footer-loc">Medford–Grants Pass, OR</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
