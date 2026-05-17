@@ -1,0 +1,7 @@
+cloudflare_account_id = "your-account-id"    # Dashboard → right sidebar
+cloudflare_zone_id    = "your-zone-id"       # Dashboard → your domain → right sidebar
+hostname              = "resume.yourdomain.com"
+worker_name           = "austin-resume"
+
+# Do not set cloudflare_api_token here — export it as an env var:
+#   export TF_VAR_cloudflare_api_token="your-token"
