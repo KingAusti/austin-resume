@@ -34,13 +34,13 @@
       "startDate": "2023-05",
       "summary": "Platform, identity and automation engineering for a nationally distributed retail brand — and the day-to-day admin for its SaaS portfolio (Okta, Jamf Pro, Zendesk, marketing platforms) and vendor renewals.",
       "highlights": [
-        "Maintain the Terraform estate (**5–15 stacks**, multi-environment) and the GitLab CI pipelines for the AWS infrastructure behind the public Dutch Bros mobile app, in partnership with Cloud Ops. TODO: environment count, deploy cadence, one concrete win with a number.",
-        "Own application monitoring and alerting and take the on-call rotation for **P1** incidents across the application estate. TODO: services covered, incident volume or MTTR.",
-        "Designed and built the Workato provisioning layer across HRIS, Okta, Google Workspace, Jamf Pro, Slack and Zendesk — manual per-app access grants became provisioning on hire and deprovisioning on exit for a **2,000+** person organization. TODO: hires per year, time-to-access before → after.",
+        "Maintain the Terraform estate (**5–15 stacks**, multi-environment) and the GitLab CI pipelines behind the AWS backend of the Dutch Bros mobile app, partnering with Cloud Ops on changes to a customer-facing production system.",
+        "Led the overhaul of the mobile app's datastore onto an open-source engine and built multiple proofs of concept of the app for internal executive review.",
+        "On call for the entire customer-facing business overnight and through the morning rush: own application monitoring and alerting and take **P1** incidents across the application estate.",
+        "Designed and built the Workato provisioning layer across HRIS, Okta, Google Workspace, Jamf Pro, Slack and Zendesk — manual per-app access grants became provisioning on hire and deprovisioning on exit for a **2,000+** person organization.",
         "Built custom Workato connectors against the Emplifi and Yext Management APIs where no vendor connector existed; automated the Yext user lifecycle for a **90,000**-potential-user field organization and eliminated **2 hrs/week** of manual vendor work.",
-        "Configure Okta SCIM provisioning and SAML/OAuth application integrations; own license assignment and reclamation across the SaaS catalog. TODO: integrated app count, licenses or dollars reclaimed.",
-        "Lead automation projects for internal customers end to end — scoping with HR, Security and Operations, solution architecture, delivery, and the runbooks that keep them running.",
-        "Build AI agents and MCP servers inside Workato and use Claude Code with MCP integrations daily; script against the Jamf Pro and Zendesk APIs in Python and Bash and manage the macOS fleet in Jamf Pro. TODO: fleet size."
+        "Own Okta SCIM provisioning and SAML/OAuth application integrations plus license assignment and reclamation; lead automation projects for internal customers end to end — scoping with HR, Security and Operations through architecture, delivery and runbooks.",
+        "Build AI agents and MCP servers inside Workato and use Claude Code with MCP integrations daily; script against the Jamf Pro and Zendesk APIs in Python and Bash and manage the macOS fleet in Jamf Pro."
       ],
       "x-display": "featured",
       "x-stack": ["AWS", "Terraform", "GitLab CI", "Python", "Bash", "Okta", "Workato", "Jamf Pro"]
