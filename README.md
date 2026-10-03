@@ -26,6 +26,13 @@ resume.json ──▶ scripts/build.mjs ──▶ dist/ ──▶ Cloudflare Wor
 
 Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, and optionally `RESUME_PHONE` (see below).
 
+### Dependabot policy
+
+- Grouped minor and patch bumps (npm, GitHub Actions) are merged with a merge commit once all required checks are green, one at a time, updating the branch if it is behind `main`.
+- Major bumps: read the release notes, check out the branch, and run `npm ci && npm run check:full` locally. For `wrangler` bumps also run `npm run deploy:dry` and confirm the PR preview serves `/` with the CSP header. For `playwright` bumps confirm `npm run pdf` still produces a 1-page PDF. Merge only if all pass; otherwise comment the failing command and leave the PR open.
+- Terraform provider bumps: `cd terraform && terraform init -upgrade && terraform plan` must show no changes before merging. Never apply from a Dependabot PR.
+- A red Dependabot PR is never merged to see whether `main` fixes it.
+
 ## What the build enforces
 
 - `resume.json` validates against the [JSON Resume](https://jsonresume.org/schema) schema plus house rules: exactly one featured role, per-role highlight budgets, GitHub links for projects, balanced `**` markers.
