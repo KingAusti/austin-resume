@@ -67,11 +67,10 @@ jobs:
           gh pr comment "$PR_NUMBER" --edit-last --create-if-none --body "$(printf '**Preview:** %s\n\nBuilt from %s.' "$URL" "${HEAD_SHA:0:7}")"
 
   lighthouse:
-    # Mobile Lighthouse against the live Preview. Advisory for now (continue-on-error);
-    # flip once the scores are stable so regressions block the PR.
+    # Mobile Lighthouse against the live Preview. Blocking: if the gate fails
+    # (performance < 95, or accessibility/best-practices/SEO < 100), this job fails and blocks the PR.
     needs: preview
     runs-on: ubuntu-latest
-    continue-on-error: true
     env:
       URL: ${{ needs.preview.outputs.url }}
     steps:
