@@ -51,7 +51,8 @@ jobs:
           set -o pipefail
           output="$(npx wrangler preview --name "pr-${PR_NUMBER}" --message "${HEAD_SHA}" --json)"
           printf '%s\n' "$output"
-          url="$(printf '%s' "$output" | jq -er '.preview.urls[0]')"
+          # wrangler prints upload progress before the JSON document; start at its opening brace.
+          url="$(printf '%s\n' "$output" | sed -n '/^{$/,$p' | jq -er '[(.preview.urls // empty), (.. | objects | .urls? // empty)] | flatten | .[0]')"
           echo "url=${url}" >> "$GITHUB_OUTPUT"
       - name: Comment Preview URL on the PR
         env:
