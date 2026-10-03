@@ -1,0 +1,68 @@
+# Reusable quality gate. Called by ci.yml (pull requests) and deploy.yml (main).
+# Produces the `dist` artifact that the callers then preview or deploy.
+name: Checks
+
+on:
+  workflow_call:
+    inputs:
+      sha:
+        description: Commit to stamp into the build (PR head sha, not the merge sha)
+        type: string
+        required: true
+      preview_name:
+        description: Preview name when building for a pull request; empty for production
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run lint:js
+      - run: npm run lint:css
+
+  terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_wrapper: false
+      - run: terraform fmt -check -recursive -diff
+      - run: terraform init -backend=false -input=false
+      - run: terraform validate -no-color
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          BUILD_SHA: ${{ inputs.sha }}
+          PREVIEW_NAME: ${{ inputs.preview_name }}
+      - run: npm run lint:html
+      - run: npm test
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
