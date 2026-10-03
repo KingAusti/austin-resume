@@ -23,8 +23,8 @@ jobs:
     secrets: inherit
 
   preview:
-    # Same-repo PRs only: forks don't get the Cloudflare secrets.
-    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    # Same-repo, human-authored PRs only: forks and Dependabot don't get the Cloudflare secrets.
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
     needs: checks
     runs-on: ubuntu-latest
     permissions:
