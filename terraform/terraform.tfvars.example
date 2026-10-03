@@ -1,7 +1,8 @@
-cloudflare_account_id = "your-account-id"    # Dashboard → right sidebar
-cloudflare_zone_id    = "your-zone-id"       # Dashboard → your domain → right sidebar
+cloudflare_account_id = "your-account-id" # Dashboard → Workers & Pages → right sidebar
+cloudflare_zone_id    = "your-zone-id"    # Dashboard → the zone → Overview → right sidebar
 hostname              = "resume.yourdomain.com"
+apex_hostname         = "yourdomain.com"
 worker_name           = "austin-resume"
 
-# Do not set cloudflare_api_token here — export it as an env var:
-#   export TF_VAR_cloudflare_api_token="your-token"
+# Never put the API token here. Export it instead:
+#   export TF_VAR_cloudflare_api_token="..."
