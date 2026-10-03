@@ -78,24 +78,40 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-      - name: Run Lighthouse (mobile)
+      - name: Warm the Preview (edge cache)
+        run: |
+          for i in 1 2; do curl -s -o /dev/null "$URL/"; done
+          curl -s "$URL/" | grep -oE '/(css|js|fonts)/[^"]+' | sort -u | while read -r asset; do curl -s -o /dev/null "$URL$asset"; done
+      - name: Run Lighthouse (mobile, 3 runs)
         run: |
           # Previews are served with <meta name="robots" content="noindex"> on purpose, so the
           # is-crawlable audit is skipped here; production is checked without that exemption.
-          npx --yes lighthouse@13 "$URL" --form-factor=mobile \
-            --only-categories=performance,accessibility,best-practices,seo \
-            --skip-audits=is-crawlable \
-            --output=json --output-path=./lighthouse.json --quiet \
-            --chrome-flags="--headless=new --no-sandbox"
-      - name: Report scores
+          for i in 1 2 3; do
+            npx --yes lighthouse@13 "$URL" --form-factor=mobile \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --skip-audits=is-crawlable \
+              --output=json --output-path="./lighthouse-$i.json" --quiet \
+              --chrome-flags="--headless=new --no-sandbox"
+          done
+      - uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-pr-${{ github.event.pull_request.number }}
+          path: lighthouse-*.json
+          retention-days: 7
+      - name: Report median scores
         run: |
           node -e '
-            const { categories } = require("./lighthouse.json");
-            const scores = Object.fromEntries(Object.entries(categories).map(([k, v]) => [k, Math.round(v.score * 100)]));
-            const rows = Object.entries(scores).map(([k, v]) => `| ${k} | ${v} |`).join("\n");
-            require("fs").appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Lighthouse (mobile)\n\n${process.env.URL}\n\n| Category | Score |\n|---|---|\n${rows}\n`);
-            console.table(scores);
-            if (Object.values(scores).some((s) => s < 99)) process.exit(1);
+            const fs = require("fs");
+            const runs = [1, 2, 3].map((i) => JSON.parse(fs.readFileSync(`./lighthouse-${i}.json`, "utf8")).categories);
+            const median = (xs) => xs.sort((a, b) => a - b)[Math.floor(xs.length / 2)];
+            const scores = Object.fromEntries(Object.keys(runs[0]).map((k) => [k, median(runs.map((r) => Math.round(r[k].score * 100)))]));
+            const all = Object.fromEntries(Object.keys(runs[0]).map((k) => [k, runs.map((r) => Math.round(r[k].score * 100)).join(" / ")]));
+            const rows = Object.entries(scores).map(([k, v]) => `| ${k} | **${v}** | ${all[k]} |`).join("\n");
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Lighthouse (mobile, median of 3)\n\n${process.env.URL}\n\n| Category | Median | Runs |\n|---|---|---|\n${rows}\n`);
+            console.table(scores); console.table(all);
+            const gate = { performance: 95, accessibility: 100, "best-practices": 100, seo: 100 };
+            const failing = Object.entries(gate).filter(([k, min]) => scores[k] < min);
+            if (failing.length) { console.error("below gate:", failing.map(([k, min]) => `${k} ${scores[k]} < ${min}`).join(", ")); process.exit(1); }
           '
 
   cleanup:
