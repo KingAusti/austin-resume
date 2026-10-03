@@ -80,7 +80,13 @@ jobs:
           node-version: 22
       - name: Run Lighthouse (mobile)
         run: |
-          npx --yes lighthouse@13 "$URL" --form-factor=mobile --output=json --output-path=./lighthouse.json --quiet --chrome-flags="--headless=new --no-sandbox"
+          # Previews are served with <meta name="robots" content="noindex"> on purpose, so the
+          # is-crawlable audit is skipped here; production is checked without that exemption.
+          npx --yes lighthouse@13 "$URL" --form-factor=mobile \
+            --only-categories=performance,accessibility,best-practices,seo \
+            --skip-audits=is-crawlable \
+            --output=json --output-path=./lighthouse.json --quiet \
+            --chrome-flags="--headless=new --no-sandbox"
       - name: Report scores
         run: |
           node -e '
