@@ -95,6 +95,7 @@
   }
 
   .summary {
+    max-width: none;
     margin-top: 0.4rem;
     font-size: 9pt;
     line-height: 1.32;
@@ -216,6 +217,11 @@
   .edu-org,
   .edu-meta {
     display: inline;
+  }
+
+  .edu-title,
+  .subhead {
+    font-size: 9.5pt;
   }
 
   .edu-title::after,
