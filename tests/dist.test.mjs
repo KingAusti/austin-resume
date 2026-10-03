@@ -27,9 +27,24 @@ test("no phone number is published on the web", async () => {
   }
 });
 
+// Bodies of every <script> element with no attributes (the inline ones). Plain string
+// scanning on our own build output; not an HTML sanitizer.
+function inlineScripts(html) {
+  const bodies = [];
+  let from = 0;
+  for (;;) {
+    const open = html.indexOf("<script>", from);
+    if (open === -1) return bodies;
+    const start = open + "<script>".length;
+    const close = html.indexOf("</script>", start);
+    bodies.push(html.slice(start, close));
+    from = close;
+  }
+}
+
 test("the only inline script is the theme script and its CSP hash is in _headers", async () => {
   const html = await read("index.html");
-  const inline = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+  const inline = inlineScripts(html);
   assert.deepEqual(inline, [THEME_SCRIPT]);
   const headers = await read("_headers");
   assert.ok(headers.includes(`'${cspHash(THEME_SCRIPT)}'`), "CSP hash missing from _headers");
