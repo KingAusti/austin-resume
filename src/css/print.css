@@ -1,8 +1,11 @@
-/* Print: a plain, single-column, light document. The PDF is rendered from this. */
+/* Print: a plain, single-column, one-page light document. scripts/pdf.mjs renders
+   resume.pdf from this and fails the build if it spills onto a second page. The
+   web page is the full story; print keeps the first few highlights of each role
+   (see PRINT_LIMIT in src/templates/work.mjs). */
 
 @page {
   size: letter;
-  margin: 0.5in 0.6in;
+  margin: 0.4in 0.5in;
 }
 
 @media print {
@@ -12,8 +15,8 @@
     --bg: #fff;
     --surface: #fff;
     --fg: #000;
-    --fg-muted: #444;
-    --rule: #ccc;
+    --fg-muted: #3d3d44;
+    --rule: #c9c9c9;
     --accent: #000;
   }
 
@@ -22,23 +25,25 @@
   }
 
   body {
-    font-size: 10.5pt;
-    line-height: 1.35;
+    font-size: 9pt;
+    line-height: 1.28;
     background: #fff;
   }
 
   h1 {
-    font-size: 22pt;
+    font-size: 17pt;
+    letter-spacing: -0.03em;
   }
 
   h2 {
-    font-size: 12pt;
+    font-size: 8.5pt;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    color: var(--fg-muted);
   }
 
   h3 {
-    font-size: 11pt;
+    font-size: 10pt;
   }
 
   p,
@@ -51,35 +56,199 @@
     text-decoration: none;
   }
 
+  .mono {
+    font-size: 0.84em;
+  }
+
+  /* Web-only chrome and anything the one-pager drops */
   .site-header,
   .skip-link,
   .icon-button,
   .button,
   .arrow,
-  .site-footer .mono {
+  .site-footer,
+  .section-head .kicker,
+  .role-summary,
+  .stack,
+  .project-meta,
+  [data-print-hide] {
     display: none;
   }
 
+  /* Hero */
   .hero,
   .section {
     display: block;
-    padding-block: 0.6rem;
+    padding-block: 0;
   }
 
-  .hero {
-    padding-top: 0;
+  .hero > * + * {
+    margin-top: 0.25rem;
   }
 
-  .hero .summary {
-    font-size: 10.5pt;
+  .hero .kicker {
+    font-size: 7.5pt;
   }
 
-  .section-head .kicker {
-    display: none;
+  .hero h1 {
+    margin-top: 0.1rem;
+  }
+
+  .summary {
+    max-width: none;
+    margin-top: 0.4rem;
+    font-size: 9pt;
+    line-height: 1.32;
+  }
+
+  .links {
+    margin-top: 0.4rem;
+    gap: 0.2rem 1rem;
+  }
+
+  [data-pdf-phone]:not([hidden]) {
+    display: list-item;
+  }
+
+  /* Sections */
+  .section {
+    margin-top: 0.45rem;
+    padding-top: 0.4rem;
+  }
+
+  .section-head {
+    margin-bottom: 0.25rem;
   }
 
   .section-body > * + * {
-    margin-top: 0.8rem;
+    margin-top: 0.3rem;
+  }
+
+  /* Roles */
+  .role + .role,
+  .earlier,
+  .project + .project,
+  .subhead {
+    padding-top: 0.25rem;
+  }
+
+  /* Role headers flow on one line: title (own line when featured) · org · dates */
+  .role-head {
+    display: block;
+  }
+
+  .role-org {
+    display: inline;
+  }
+
+  .role-meta {
+    display: inline;
+  }
+
+  .role-org::after {
+    content: " · ";
+    color: var(--fg-muted);
+  }
+
+  .highlights {
+    margin-top: 0.2rem;
+  }
+
+  .highlights li + li {
+    margin-top: 0.1rem;
+  }
+
+  .highlights li {
+    padding-left: 0.9rem;
+  }
+
+  .role-compact .highlights {
+    margin-top: 0.1rem;
+  }
+
+  /* Compact roles collapse to a single line: title · org · dates */
+  .role-compact .role-title {
+    display: inline;
+    font-size: 9pt;
+  }
+
+  .role-compact .role-title::after {
+    content: " · ";
+    color: var(--fg-muted);
+  }
+
+  .earlier .kicker {
+    display: inline;
+    margin-right: 0.4rem;
+    font-size: 7pt;
+  }
+
+  /* Projects */
+  .project-title {
+    display: inline;
+  }
+
+  .project-desc {
+    display: inline;
+    margin-top: 0;
+  }
+
+  .project-title::after {
+    content: " — ";
+    color: var(--fg-muted);
+  }
+
+  /* Skills */
+  .skills {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem 1.5rem;
+  }
+
+  .skill-group dd {
+    margin-top: 0;
+  }
+
+  /* Education */
+  .edu + .edu {
+    margin-top: 0.2rem;
+  }
+
+  .edu-title,
+  .edu-org,
+  .edu-meta {
+    display: inline;
+  }
+
+  .edu-title,
+  .subhead {
+    font-size: 9.5pt;
+  }
+
+  .edu-title::after,
+  .edu-org::after {
+    content: " · ";
+    color: var(--fg-muted);
+  }
+
+  .subhead {
+    margin-top: 0.4rem;
+  }
+
+  .certs {
+    margin-top: 0.15rem;
+  }
+
+  .certs li {
+    display: inline;
+  }
+
+  .certs li + li {
+    margin-top: 0;
+  }
+
+  .certs li + li::before {
+    content: " · ";
+    color: var(--fg-muted);
   }
 
   .role,
@@ -88,20 +257,9 @@
     break-inside: avoid;
   }
 
-  .role + .role,
-  .project + .project,
-  .earlier,
-  .subhead {
-    padding-top: 0.6rem;
-  }
-
-  .highlights li + li {
-    margin-top: 0.25rem;
-  }
-
-  .site-footer {
-    margin-top: 0.8rem;
-    padding-block: 0.5rem 0;
+  h2,
+  h3 {
+    break-after: avoid;
   }
 
   html.js [data-reveal] {

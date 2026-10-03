@@ -1,8 +1,10 @@
 // Checks against the built output in dist/. Run `npm run build` first.
 
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { test } from "node:test";
+import { PDFDocument } from "pdf-lib";
 import { cspHash } from "../scripts/lib/hash.mjs";
 import { PHONE_RE } from "../scripts/validate.mjs";
 import { THEME_SCRIPT } from "../src/templates/head.mjs";
@@ -40,6 +42,26 @@ test("resume.json is served verbatim and is tool-compatible", async () => {
   assert.deepEqual(served, source);
   assert.equal(served.basics.phone, undefined);
   assert.ok(Array.isArray(served.work[0].highlights));
+});
+
+// Produced by `npm run pdf` / `npm run og`, which need a Playwright browser; skipped if absent.
+const hasPdf = existsSync(new URL("resume.pdf", dist));
+const hasOg = existsSync(new URL("og.png", dist));
+
+test("resume.pdf is a single tagged page with metadata", { skip: !hasPdf && "run npm run pdf first" }, async () => {
+  const bytes = await readFile(new URL("resume.pdf", dist));
+  assert.equal(bytes.subarray(0, 5).toString(), "%PDF-");
+  const doc = await PDFDocument.load(bytes);
+  assert.equal(doc.getPageCount(), 1);
+  assert.match(doc.getTitle(), /^Austin Henry — /);
+  assert.equal(doc.getAuthor(), "Austin Henry");
+});
+
+test("og.png is a 1200×630 PNG", { skip: !hasOg && "run npm run og first" }, async () => {
+  const bytes = await readFile(new URL("og.png", dist));
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), 1200);
+  assert.equal(bytes.readUInt32BE(20), 630);
 });
 
 test("assets are content-hashed", async () => {
