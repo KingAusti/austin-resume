@@ -14,6 +14,11 @@ on:
         type: string
         required: false
         default: ""
+      release:
+        description: Production build; fails if resume.json still has TODO placeholders
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -58,6 +63,7 @@ jobs:
         env:
           BUILD_SHA: ${{ inputs.sha }}
           PREVIEW_NAME: ${{ inputs.preview_name }}
+          RELEASE: ${{ inputs.release && '1' || '' }}
       - run: npm run lint:html
       - run: npm test
       - uses: actions/upload-artifact@v7

@@ -1,0 +1,265 @@
+/* Components: hero, roles, projects, skills, education, buttons, reveal */
+
+/* Hero */
+
+.hero > * + * {
+  margin-top: 1.25rem;
+}
+
+.hero .kicker {
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin-top: 0.5rem;
+}
+
+.tagline {
+  color: var(--fg-muted);
+}
+
+.summary {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  max-width: 48ch;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  list-style: none;
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.button:hover {
+  border-color: var(--accent);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.icon-button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* The toggle is useless without JS: hide it until the inline script marks the document. */
+html:not(.js) .icon-button {
+  display: none;
+}
+
+/* Show the icon for the theme you would switch TO. */
+.icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .icon-moon {
+    display: none;
+  }
+}
+
+/* Roles */
+
+.role + .role {
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.role-head {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.role-org {
+  color: var(--fg-muted);
+}
+
+.role-org a {
+  text-decoration: none;
+}
+
+.role-meta {
+  color: var(--fg-muted);
+}
+
+.role-summary {
+  margin-top: 1rem;
+  color: var(--fg-muted);
+}
+
+.highlights {
+  margin-top: 1rem;
+  list-style: none;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.highlights li + li {
+  margin-top: 0.6rem;
+}
+
+.highlights li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--fg-muted);
+}
+
+.stack {
+  margin-top: 1.25rem;
+  color: var(--fg-muted);
+}
+
+.role-compact .role-title {
+  font-size: var(--text-md);
+}
+
+.role-compact .highlights {
+  margin-top: 0.6rem;
+}
+
+.role-compact .highlights li {
+  color: var(--fg-muted);
+}
+
+.earlier {
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  color: var(--fg-muted);
+}
+
+.earlier .kicker {
+  margin-bottom: 0.35rem;
+}
+
+/* Projects */
+
+.project + .project {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.project-title a {
+  text-decoration: none;
+}
+
+.project-desc {
+  margin-top: 0.5rem;
+}
+
+.project-meta {
+  margin-top: 0.6rem;
+  color: var(--fg-muted);
+}
+
+/* Skills */
+
+.skills {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.skill-group dt {
+  font-weight: 600;
+}
+
+.skill-group dd {
+  margin-top: 0.2rem;
+  color: var(--fg-muted);
+}
+
+/* Education */
+
+.edu + .edu {
+  margin-top: 1.5rem;
+}
+
+.edu-title {
+  font-size: var(--text-md);
+}
+
+.edu-org,
+.edu-meta {
+  color: var(--fg-muted);
+}
+
+.subhead {
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--text-md);
+}
+
+.certs {
+  margin-top: 1rem;
+  list-style: none;
+}
+
+.certs li + li {
+  margin-top: 0.5rem;
+}
+
+.cert-meta {
+  color: var(--fg-muted);
+}
+
+/* Reveal on scroll: only when JS is present and motion is allowed. Without either,
+   everything is simply visible. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    opacity: 0;
+    translate: 0 10px;
+    transition: opacity 0.55s var(--ease), translate 0.55s var(--ease);
+  }
+
+  html.js [data-reveal].is-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (width >= 48em) {
+  .skills {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+}

@@ -7,10 +7,12 @@
     "node": ">=22"
   },
   "scripts": {
+    "validate": "node scripts/validate.mjs",
     "build": "node scripts/build.mjs",
+    "watch": "node --watch-path=src --watch-path=resume.json scripts/build.mjs",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint .",
-    "lint:css": "stylelint \"css/**/*.css\"",
+    "lint:css": "stylelint \"src/css/**/*.css\"",
     "lint:html": "htmlhint \"dist/**/*.html\"",
     "test": "node --test \"tests/**/*.test.mjs\"",
     "check": "npm run lint && npm run build && npm run lint:html && npm test",
@@ -21,6 +23,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "eslint": "^10.12.0",
     "globals": "^17.13.0",
     "htmlhint": "^1.9.2",

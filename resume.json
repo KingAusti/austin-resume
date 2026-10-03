@@ -1,0 +1,179 @@
+{
+  "basics": {
+    "name": "Austin Henry",
+    "label": "Infrastructure & Integration Engineer",
+    "email": "info@austinhenry.dev",
+    "url": "https://resume.austinhenry.dev",
+    "summary": "I run the infrastructure and automation layer for a 2,000-person, nationally distributed company — Terraform-managed AWS behind a public mobile app, GitLab CI pipelines, P1 on-call, and an identity-provisioning platform that turned per-app access grants into API-driven provisioning on hire. Twelve years of customer-facing technical work means I'm comfortable owning a problem from a stakeholder's whiteboard to a running system.",
+    "location": {
+      "city": "Medford",
+      "region": "OR",
+      "countryCode": "US"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "KingAusti",
+        "url": "https://github.com/KingAusti"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "austinthehenry",
+        "url": "https://linkedin.com/in/austinthehenry"
+      }
+    ],
+    "x-tagline": ["AWS", "Terraform", "CI/CD", "Identity automation", "APIs"],
+    "x-work-mode": "Remote"
+  },
+  "work": [
+    {
+      "name": "Dutch Bros Coffee",
+      "position": "Engineer II",
+      "url": "https://www.dutchbros.com",
+      "location": "Remote",
+      "startDate": "2023-05",
+      "summary": "Platform, identity and automation engineering for a nationally distributed retail brand — and the day-to-day admin for its SaaS portfolio (Okta, Jamf Pro, Zendesk, marketing platforms) and vendor renewals.",
+      "highlights": [
+        "Maintain the Terraform estate (**5–15 stacks**, multi-environment) and the GitLab CI pipelines behind the AWS backend of the Dutch Bros mobile app, partnering with Cloud Ops on changes to a customer-facing production system.",
+        "Led the overhaul of the mobile app's datastore onto an open-source engine and built multiple proofs of concept of the app for internal executive review.",
+        "On call for the entire customer-facing business overnight and through the morning rush: own application monitoring and alerting and take **P1** incidents across the application estate.",
+        "Designed and built the Workato provisioning layer across HRIS, Okta, Google Workspace, Jamf Pro, Slack and Zendesk — manual per-app access grants became provisioning on hire and deprovisioning on exit for a **2,000+** person organization.",
+        "Built custom Workato connectors against the Emplifi and Yext Management APIs where no vendor connector existed; automated the Yext user lifecycle for a **90,000**-potential-user field organization and eliminated **2 hrs/week** of manual vendor work.",
+        "Own Okta SCIM provisioning and SAML/OAuth application integrations plus license assignment and reclamation; lead automation projects for internal customers end to end — scoping with HR, Security and Operations through architecture, delivery and runbooks.",
+        "Build AI agents and MCP servers inside Workato and use Claude Code with MCP integrations daily; script against the Jamf Pro and Zendesk APIs in Python and Bash and manage the macOS fleet in Jamf Pro."
+      ],
+      "x-display": "featured",
+      "x-stack": ["AWS", "Terraform", "GitLab CI", "Python", "Bash", "Okta", "Workato", "Jamf Pro"]
+    },
+    {
+      "name": "Dutch Bros Coffee",
+      "position": "IT Support Analyst II",
+      "startDate": "2021-07",
+      "endDate": "2023-05",
+      "highlights": [
+        "Administered Google Workspace end to end — provisioning, Groups, Calendar resources, access policy — as the company scaled from regional to national.",
+        "Escalation point for complex technical issues; led company-wide technology rollouts across IT and Operations."
+      ],
+      "x-display": "compact"
+    },
+    {
+      "name": "Dutch Bros Coffee",
+      "position": "IT Support Specialist",
+      "startDate": "2019-04",
+      "endDate": "2021-07",
+      "highlights": [
+        "End-user support and company-wide service implementations for a high-growth retail brand; supported Cisco Meraki networks across distributed retail locations (ECMS 1)."
+      ],
+      "x-display": "compact"
+    },
+    {
+      "name": "Lithia Motors",
+      "position": "IT Support Technician",
+      "startDate": "2016-09",
+      "endDate": "2019-04",
+      "x-display": "earlier"
+    },
+    {
+      "name": "Apple",
+      "position": "Apple Support Advisor",
+      "startDate": "2015-07",
+      "endDate": "2016-07",
+      "x-display": "earlier"
+    },
+    {
+      "name": "Geek Squad",
+      "position": "Consultation Agent",
+      "startDate": "2013-10",
+      "endDate": "2015-07",
+      "x-display": "earlier"
+    }
+  ],
+  "projects": [
+    {
+      "name": "resume.austinhenry.dev",
+      "description": "This site. resume.json is the single source of truth; a dependency-free Node build renders the page and a one-page PDF; GitHub Actions lints, previews every pull request on Cloudflare Workers and deploys main; Terraform owns the domain and the apex redirect.",
+      "url": "https://resume.austinhenry.dev",
+      "keywords": ["Cloudflare Workers", "GitHub Actions", "Terraform", "Playwright", "Node.js"],
+      "x-repo": "https://github.com/KingAusti/austin-resume"
+    },
+    {
+      "name": "ez-pihole",
+      "description": "Pi-hole on macOS in one command: Docker Compose, a guided first run, automatic port-conflict resolution, and status and management scripts.",
+      "keywords": ["Shell", "Docker", "Pi-hole", "DNS"],
+      "x-repo": "https://github.com/KingAusti/ez-pihole"
+    },
+    {
+      "name": "ez-file-storage",
+      "description": "Self-hosted file and data storage service: JWT auth with refresh tokens, audit logging, tags and full-text search, Postgres and Redis, one-command Docker Compose setup.",
+      "keywords": ["Python", "PostgreSQL", "Redis", "Docker"],
+      "x-repo": "https://github.com/KingAusti/ez-file-storage"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Cloud & IaC",
+      "keywords": ["AWS", "Terraform", "GitLab CI", "GitHub Actions", "Cloudflare Workers", "Docker", "Linux", "Monitoring & alerting", "On-call"]
+    },
+    {
+      "name": "Automation & APIs",
+      "keywords": ["Python", "Bash", "REST & webhooks", "Workato (custom connectors, Developer API)", "Postman", "MCP servers"]
+    },
+    {
+      "name": "Identity & endpoints",
+      "keywords": ["Okta (SCIM, SAML, OAuth)", "Google Workspace", "Jamf Pro", "Zendesk", "Slack"]
+    },
+    {
+      "name": "Networking",
+      "keywords": ["Cisco Meraki", "DNS", "TCP/IP"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Colorado Technical University",
+      "studyType": "BS",
+      "area": "Computer Science",
+      "endDate": "2027",
+      "x-status": "In progress, expected 2027"
+    },
+    {
+      "institution": "University of Oregon",
+      "studyType": "Certificate",
+      "area": "Full Stack Web Development",
+      "endDate": "2022"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Workato Automation Pro I, II & III",
+      "issuer": "Workato",
+      "date": "2024"
+    },
+    {
+      "name": "Cisco Meraki ECMS 1 & 2",
+      "issuer": "Cisco",
+      "date": "2022"
+    },
+    {
+      "name": "Fundamentals of Networking",
+      "issuer": "uCertify",
+      "date": "2024"
+    },
+    {
+      "name": "AWS Cloud Quest: Cloud Practitioner (badge)",
+      "issuer": "Amazon Web Services",
+      "date": "2025"
+    }
+  ],
+  "meta": {
+    "canonical": "https://resume.austinhenry.dev/resume.json",
+    "version": "2.0.0",
+    "lastModified": "2026-10-03"
+  },
+  "x-site": {
+    "title": "Austin Henry — Infrastructure & Integration Engineer",
+    "description": "Infrastructure & Integration Engineer — Terraform/AWS, CI/CD, API-driven identity automation and AI agents for a 2,000-person national brand.",
+    "repo": "https://github.com/KingAusti/austin-resume",
+    "pdf": "/resume.pdf",
+    "ogImage": "/og.png"
+  }
+}
