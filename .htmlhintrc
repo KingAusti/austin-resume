@@ -1,0 +1,14 @@
+{
+  "doctype-first": true,
+  "doctype-html5": true,
+  "title-require": true,
+  "tagname-lowercase": true,
+  "attr-lowercase": ["viewBox", "preserveAspectRatio"],
+  "attr-value-double-quotes": true,
+  "attr-no-duplication": true,
+  "tag-pair": true,
+  "spec-char-escape": true,
+  "id-unique": true,
+  "src-not-empty": true,
+  "alt-require": true
+}

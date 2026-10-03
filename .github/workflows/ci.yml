@@ -1,0 +1,81 @@
+# Pull requests: run the checks, deploy a Workers Preview, and pin its URL to the PR.
+# Closing the PR deletes the Preview.
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}-${{ github.event.action == 'closed' }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    if: github.event.action != 'closed'
+    uses: ./.github/workflows/checks.yml
+    with:
+      sha: ${{ github.event.pull_request.head.sha }}
+      preview_name: pr-${{ github.event.pull_request.number }}
+
+  preview:
+    # Same-repo PRs only: forks don't get the Cloudflare secrets.
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    needs: checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - id: preview
+        name: Create or update Preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -o pipefail
+          output="$(npx wrangler preview --name "pr-${PR_NUMBER}" --message "${HEAD_SHA}" --json)"
+          printf '%s\n' "$output"
+          # wrangler prints upload progress before the JSON document; start at its opening brace.
+          url="$(printf '%s\n' "$output" | sed -n '/^{$/,$p' | jq -er '[(.preview.urls // empty), (.. | objects | .urls? // empty)] | flatten | .[0]')"
+          echo "url=${url}" >> "$GITHUB_OUTPUT"
+      - name: Comment Preview URL on the PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          URL: ${{ steps.preview.outputs.url }}
+        run: |
+          gh pr comment "$PR_NUMBER" --edit-last --create-if-none --body "$(printf '**Preview:** %s\n\nBuilt from %s.' "$URL" "${HEAD_SHA:0:7}")"
+
+  cleanup:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - name: Delete Preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: npx wrangler preview delete --name "pr-${PR_NUMBER}" --skip-confirmation

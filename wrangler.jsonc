@@ -1,14 +1,15 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "austin-resume",
-  "compatibility_date": "2026-05-17",
+  "compatibility_date": "2026-10-02",
+  // Static site: no Worker script, assets are served directly from dist/.
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
   "observability": {
     "enabled": true
   },
-  "assets": {
-    "directory": "."
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  // Enables `wrangler preview` (per-PR preview deployments). No overrides needed.
+  "previews": {}
 }
