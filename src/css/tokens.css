@@ -1,0 +1,53 @@
+/* Design tokens. Colors are declared once for light, then upgraded to light-dark()
+   where supported; browsers without it keep the light palette. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Palette (light) */
+  --bg: #faf9f6;
+  --surface: #fff;
+  --fg: #17171a;
+  --fg-muted: #5c5c66;
+  --rule: #e3e1db;
+  --accent: #1a56db;
+  --selection: #d6e2ff;
+
+  /* Fonts */
+  --font-sans: "Inter Variable", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono Fallback", ui-monospace, monospace;
+
+  /* Fluid type scale */
+  --text-sm: clamp(0.8rem, 0.78rem + 0.1vw, 0.875rem);
+  --text-md: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.3rem);
+  --text-xl: clamp(1.375rem, 1.2rem + 0.9vw, 1.9rem);
+  --text-display: clamp(2.5rem, 1.6rem + 4.5vw, 5rem);
+
+  /* Layout and motion */
+  --measure: 62ch;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --max-width: 72rem;
+  --header-height: 3.5rem;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@supports (color: light-dark(#000, #fff)) {
+  :root {
+    --bg: light-dark(#faf9f6, #0f0f0e);
+    --surface: light-dark(#fff, #161618);
+    --fg: light-dark(#17171a, #e8e6e1);
+    --fg-muted: light-dark(#5c5c66, #a1a09a);
+    --rule: light-dark(#e3e1db, #27272b);
+    --accent: light-dark(#1a56db, #8ab4f8);
+    --selection: light-dark(#d6e2ff, #2a3a5c);
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}

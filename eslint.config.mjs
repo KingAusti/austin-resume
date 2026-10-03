@@ -8,17 +8,17 @@ export default defineConfig([
   },
   js.configs.recommended,
   {
-    // Browser code shipped to the page.
-    files: ["js/**/*.js", "src/js/**/*.js"],
+    // Browser code shipped to the page (loaded as an ES module).
+    files: ["src/js/**/*.js"],
     languageOptions: {
       ecmaVersion: 2024,
-      sourceType: "script",
+      sourceType: "module",
       globals: globals.browser,
     },
   },
   {
-    // Build tooling and tests run under Node.
-    files: ["scripts/**/*.mjs", "tests/**/*.mjs", "eslint.config.mjs"],
+    // Build tooling, templates and tests run under Node.
+    files: ["scripts/**/*.mjs", "src/templates/**/*.mjs", "src/headers.mjs", "tests/**/*.mjs", "eslint.config.mjs"],
     languageOptions: {
       ecmaVersion: 2024,
       sourceType: "module",

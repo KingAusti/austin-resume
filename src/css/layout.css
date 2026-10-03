@@ -1,0 +1,128 @@
+/* Page frame, header, sections, footer */
+
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: var(--header-height);
+}
+
+.brand {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: none;
+  gap: 0.25rem;
+  margin-left: auto;
+  list-style: none;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 0.35rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg-muted);
+  border-radius: 4px;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current] {
+  color: var(--fg);
+}
+
+.nav-links a[aria-current] {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.hero {
+  padding-block: clamp(4rem, 12vh, 8rem) clamp(3rem, 8vh, 5rem);
+}
+
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem 3rem;
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  border-top: 1px solid var(--rule);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.section-body > * + * {
+  margin-top: 2rem;
+}
+
+.site-footer {
+  margin-top: clamp(2rem, 6vw, 4rem);
+  padding-block: 2rem 3rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+@media (width >= 48em) {
+  .nav-links {
+    display: flex;
+  }
+
+  .nav-actions {
+    margin-left: 0;
+  }
+
+  .section {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
+
+  .section-head {
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+    flex-direction: column;
+    align-self: start;
+    gap: 0.5rem;
+  }
+}

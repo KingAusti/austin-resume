@@ -1,0 +1,112 @@
+/* Print: a plain, single-column, light document. The PDF is rendered from this. */
+
+@page {
+  size: letter;
+  margin: 0.5in 0.6in;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+
+    --bg: #fff;
+    --surface: #fff;
+    --fg: #000;
+    --fg-muted: #444;
+    --rule: #ccc;
+    --accent: #000;
+  }
+
+  html {
+    scroll-padding-top: 0;
+  }
+
+  body {
+    font-size: 10.5pt;
+    line-height: 1.35;
+    background: #fff;
+  }
+
+  h1 {
+    font-size: 22pt;
+  }
+
+  h2 {
+    font-size: 12pt;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  h3 {
+    font-size: 11pt;
+  }
+
+  p,
+  li,
+  dd {
+    max-width: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .site-header,
+  .skip-link,
+  .icon-button,
+  .button,
+  .arrow,
+  .site-footer .mono {
+    display: none;
+  }
+
+  .hero,
+  .section {
+    display: block;
+    padding-block: 0.6rem;
+  }
+
+  .hero {
+    padding-top: 0;
+  }
+
+  .hero .summary {
+    font-size: 10.5pt;
+  }
+
+  .section-head .kicker {
+    display: none;
+  }
+
+  .section-body > * + * {
+    margin-top: 0.8rem;
+  }
+
+  .role,
+  .project,
+  .edu {
+    break-inside: avoid;
+  }
+
+  .role + .role,
+  .project + .project,
+  .earlier,
+  .subhead {
+    padding-top: 0.6rem;
+  }
+
+  .highlights li + li {
+    margin-top: 0.25rem;
+  }
+
+  .site-footer {
+    margin-top: 0.8rem;
+    padding-block: 0.5rem 0;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+}
