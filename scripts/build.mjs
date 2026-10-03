@@ -90,7 +90,7 @@ await emit("404.html", String(notFound(ctx)));
 // --- 4. static --------------------------------------------------------------
 
 for (const entry of await readdir(path.join(src, "static"))) {
-  if (entry.startsWith(".") || entry.endsWith(".html")) continue; // og.html is a render source, not a page
+  if (entry.startsWith(".")) continue;
   await cp(path.join(src, "static", entry), path.join(dist, entry));
   sizes.push([entry, (await stat(path.join(dist, entry))).size]);
 }

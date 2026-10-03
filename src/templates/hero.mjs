@@ -15,6 +15,7 @@ export function hero({ resume, site }) {
         <li><a href="mailto:${basics.email}">${basics.email}</a></li>
         ${basics.profiles.map((p) => html`<li><a href="${p.url}" rel="me noopener">${p.network}<span class="arrow" aria-hidden="true"> ↗</span></a></li>`)}
         ${site.pdf ? html`<li><a href="${site.pdf}">Resume (PDF)<span class="arrow" aria-hidden="true"> ↓</span></a></li>` : null}
+        <li class="mono" data-pdf-phone hidden></li>
       </ul>
     </section>
   `;

@@ -34,7 +34,7 @@ export function head({ resume, site, siteUrl, assets, build, title, description,
     <meta property="og:title" content="${title}">
     <meta property="og:description" content="${description}">
     <meta property="og:url" content="${pageUrl}">
-    ${site.ogImage ? html`<meta property="og:image" content="${siteUrl}${site.ogImage}">` : null}
+    ${site.ogImage ? html`<meta property="og:image" content="${siteUrl}${site.ogImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">` : null}
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preload" href="${assets.fonts.inter}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="${assets.fonts.mono}" as="font" type="font/woff2" crossorigin>

@@ -19,6 +19,7 @@ jobs:
     with:
       sha: ${{ github.sha }}
       release: true
+    secrets: inherit
 
   deploy:
     needs: checks

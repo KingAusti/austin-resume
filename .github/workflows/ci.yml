@@ -20,6 +20,7 @@ jobs:
     with:
       sha: ${{ github.event.pull_request.head.sha }}
       preview_name: pr-${{ github.event.pull_request.number }}
+    secrets: inherit
 
   preview:
     # Same-repo PRs only: forks don't get the Cloudflare secrets.
@@ -29,6 +30,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+    outputs:
+      url: ${{ steps.preview.outputs.url }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -62,6 +65,32 @@ jobs:
           URL: ${{ steps.preview.outputs.url }}
         run: |
           gh pr comment "$PR_NUMBER" --edit-last --create-if-none --body "$(printf '**Preview:** %s\n\nBuilt from %s.' "$URL" "${HEAD_SHA:0:7}")"
+
+  lighthouse:
+    # Mobile Lighthouse against the live Preview. Advisory for now (continue-on-error);
+    # flip once the scores are stable so regressions block the PR.
+    needs: preview
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    env:
+      URL: ${{ needs.preview.outputs.url }}
+    steps:
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Run Lighthouse (mobile)
+        run: |
+          npx --yes lighthouse@13 "$URL" --form-factor=mobile --output=json --output-path=./lighthouse.json --quiet --chrome-flags="--headless=new --no-sandbox"
+      - name: Report scores
+        run: |
+          node -e '
+            const { categories } = require("./lighthouse.json");
+            const scores = Object.fromEntries(Object.entries(categories).map(([k, v]) => [k, Math.round(v.score * 100)]));
+            const rows = Object.entries(scores).map(([k, v]) => `| ${k} | ${v} |`).join("\n");
+            require("fs").appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Lighthouse (mobile)\n\n${process.env.URL}\n\n| Category | Score |\n|---|---|\n${rows}\n`);
+            console.table(scores);
+            if (Object.values(scores).some((s) => s < 99)) process.exit(1);
+          '
 
   cleanup:
     if: github.event.action == 'closed'

@@ -59,11 +59,22 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci
+      - id: playwright
+        run: echo "version=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+      - run: npx playwright install --with-deps chromium
       - run: npm run build
         env:
           BUILD_SHA: ${{ inputs.sha }}
           PREVIEW_NAME: ${{ inputs.preview_name }}
           RELEASE: ${{ inputs.release && '1' || '' }}
+      - run: npm run pdf
+        env:
+          RESUME_PHONE: ${{ secrets.RESUME_PHONE }}
+      - run: npm run og
       - run: npm run lint:html
       - run: npm test
       - uses: actions/upload-artifact@v7
