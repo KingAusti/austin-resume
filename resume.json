@@ -97,6 +97,12 @@
       "x-repo": "https://github.com/KingAusti/austin-resume"
     },
     {
+      "name": "murmur",
+      "description": "Natural-sounding read-aloud and dictation for Chromium, fully on-device. A Manifest V3 extension talks to a token-paired FastAPI server, run as a launchd service, that serves Kokoro-82M speech synthesis and Parakeet speech recognition on Apple Silicon (MLX), with word-by-word highlighting, a pdf.js PDF reader and a Puppeteer end-to-end suite.",
+      "keywords": ["Python", "FastAPI", "JavaScript", "MLX", "Puppeteer"],
+      "x-repo": "https://github.com/KingAusti/murmur"
+    },
+    {
       "name": "ez-pihole",
       "description": "Pi-hole on macOS in one command: Docker Compose, a guided first run, automatic port-conflict resolution, and status and management scripts.",
       "keywords": ["Shell", "Docker", "Pi-hole", "DNS"],
